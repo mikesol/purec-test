@@ -1,8 +1,7 @@
 default: main
 .PHONY: default
 
-CFLAGS = -O0 -g3 -I/usr/include/python3.8
-
+CFLAGS = -O0 -g3 -I/usr/include/python3.8 -lpython3.8
 include $(PUREC_DIR)/mk/target.mk
 
 main: .spago

@@ -1,19 +1,10 @@
 module Main where
 
 import Prelude
-import Data.Newtype(class Newtype)
-import Data.Identity(Identity)
-
-newtype Effect a = Effect (Identity a)
-derive instance newtypeEffect :: Newtype (Effect a) _
-derive newtype instance functorEffect :: Functor Effect
-derive newtype instance applyEffect :: Apply Effect
-derive newtype instance applicativeEffect :: Applicative Effect
-derive newtype instance bindEffect :: Bind Effect
-derive newtype instance monadEffect :: Monad Effect
-
+import Effect
+import Effect.Unsafe
 foreign import putStrLn :: String -> Effect Int
-foreign import someStr :: Effect String
+foreign import doSomePython :: Effect Unit
 
 
 testString :: Effect Int
@@ -41,9 +32,10 @@ testArray  =
       [_, _, x, _] -> pure x
       _            -> pure 1
 
-main :: Effect Unit
-main = do
+main :: Unit
+main = unsafePerformEffect do
   void $ putStrLn "hello"
+  void $ doSomePython
   void $ testArray
   void $ testRecord
   void $ testString

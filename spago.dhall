@@ -8,6 +8,7 @@ You can edit this file as you like.
   , "bifunctors"
   , "console"
   , "control"
+  , "effect"
   , "identity"
   , "integers"
   , "math"
